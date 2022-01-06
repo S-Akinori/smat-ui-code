@@ -1,4 +1,4 @@
-export type ButtonType {
+export type ButtonType = {
   id: string,
   title: string,
   type: string,
