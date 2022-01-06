@@ -53,7 +53,7 @@ const ButtonCodeArea = () => {
           {
             text: cssCodeArea.textContent,
             ext: "css"
-          },
+          }
         ]
         const res = await fetch('/api/file', {
           method: "POST",
@@ -63,7 +63,6 @@ const ButtonCodeArea = () => {
           body: JSON.stringify({textdata: textdata})
         });
         const data = await res.json();
-        console.log(data.url)
         target.setAttribute('href', data.url);
         target.click();
       }

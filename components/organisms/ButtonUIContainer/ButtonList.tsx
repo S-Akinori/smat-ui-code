@@ -32,7 +32,6 @@ const buttonItems = [
 
 const ButtonList = () => {
   const {buttons, setButtons} = useContext(ButtonUIState);
-  console.log(buttonItems)
 
   const onClick = (e: React.MouseEvent<HTMLElement>) => {
     // add button

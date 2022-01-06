@@ -17,7 +17,6 @@ const createHtml = (buttons: ButtonType[]) => {
 }
 
 const createCss = (buttons: ButtonType[]) => {
-  console.log(buttons)
   let css = `
         .buttons-container {
           display: flex;

@@ -18,9 +18,10 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { textdata }: Props = req.body
+  console.log(textdata)
   const fileId = Math.random().toString(32).substring(2);
   const zip = new AdmZip();
-  for(let item of textdata) {
+  for(const item of textdata) {
     const name = 'file-' + fileId + '.' + item.ext;
     zip.addFile("./file/" + name, Buffer.from(item.text, "utf-8"));
   }
