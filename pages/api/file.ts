@@ -19,6 +19,9 @@ export default async function handler(
 ) {
   const { textdata }: Props = req.body
   console.log(textdata)
+  if(!textdata) {
+    res.status(200).json({url: '#'})  
+  }
   const fileId = Math.random().toString(32).substring(2);
   const zip = new AdmZip();
   for(const item of textdata) {
