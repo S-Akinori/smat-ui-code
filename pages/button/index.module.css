@@ -1,0 +1,26 @@
+.container {
+  padding: 1rem;
+}
+.componentArea {
+  display: flex;
+  padding: 1rem 0;
+}
+.buttonList {
+  width: 30%;
+}
+.generatedArea {
+  padding: 1rem;
+  width: 70%;
+}
+
+@media (max-width: 768px) {
+  .componentArea {
+    display: block;
+  }
+  .buttonList {
+    width: 100%;
+  }
+  .generatedArea {
+    width: 100%;
+  }
+}

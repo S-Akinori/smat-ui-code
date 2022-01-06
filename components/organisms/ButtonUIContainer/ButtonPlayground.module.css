@@ -1,0 +1,11 @@
+.area {
+  position: relative;
+  padding: 1rem;
+}
+
+.placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
