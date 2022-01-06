@@ -11,5 +11,5 @@ const serviceAccount: admin.ServiceAccount = {
 
 export const firebaseAdmin = admin.apps[0] || admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  storageBucket: 'smart-ui-code.appspot.com'
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
 });
