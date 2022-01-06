@@ -25,10 +25,10 @@ export default async function handler(
   const zip = new AdmZip();
   for(const item of textdata) {
     const name = 'file-' + fileId + '.' + item.ext;
-    zip.addFile(name, Buffer.from(item.text, "utf-8"));
+    zip.addFile('/files/' + name, Buffer.from(item.text, "utf-8"));
   }
   const zipFileName = fileId + ".zip";
-  const filePath = zipFileName;
+  const filePath = '/files/' + zipFileName;
   zip.writeZip(filePath);
 
   const bucket = firebaseAdmin.storage().bucket()
