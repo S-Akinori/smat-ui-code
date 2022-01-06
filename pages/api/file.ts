@@ -2,7 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import AdmZip from "adm-zip"
 import { firebaseAdmin } from '../../lib/firebaseAdmin';
-import fs from 'fs'
 
 interface TextData {
   text: string,
@@ -24,21 +23,22 @@ export default async function handler(
   const fileId = Math.random().toString(32).substring(2);
   const zip = new AdmZip();
   for(const item of textdata) {
-    const name = 'file-' + fileId + '.' + item.ext;
+    const name = 'button-' + fileId + '.' + item.ext;
     zip.addFile(name, Buffer.from(item.text, "utf-8"));
   }
-  const zipFileName = fileId + ".zip";
-  const filePath = '/files/' + zipFileName;
-  zip.writeZip(filePath);
 
+  const zipFileName = 'button-' + fileId + ".zip";
+  const buffer = zip.toBuffer()
   const bucket = firebaseAdmin.storage().bucket()
-  const file = await bucket.upload(filePath)
+  const file = bucket.file(zipFileName);
+  await file.save(buffer, {
+    metadata: {
+      contentType: 'application/zip'
+    }
+  });
   const url = await bucket.file(zipFileName).getSignedUrl({
     action: 'read',
     expires: '12-31-2022'
   })
-  fs.unlink(filePath, (err) => {
-    if (err) throw err;
-  });
   res.status(200).json({url})
 }

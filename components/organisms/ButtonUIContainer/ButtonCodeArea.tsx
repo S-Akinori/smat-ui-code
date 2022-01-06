@@ -63,7 +63,9 @@ const ButtonCodeArea = () => {
           body: JSON.stringify({textdata: textdata})
         });
         const data = await res.json();
-        target.setAttribute('href', data.url);
+        const url = data.url
+        console.log(url)
+        target.setAttribute('href', url);
         target.click();
       }
     }
