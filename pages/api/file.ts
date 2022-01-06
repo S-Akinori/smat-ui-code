@@ -18,7 +18,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { textdata }: Props = req.body
-  console.log(textdata)
   if(!textdata) {
     res.status(200).json({url: '#'})  
   }
@@ -26,7 +25,7 @@ export default async function handler(
   const zip = new AdmZip();
   for(const item of textdata) {
     const name = 'file-' + fileId + '.' + item.ext;
-    zip.addFile("./file/" + name, Buffer.from(item.text, "utf-8"));
+    zip.addFile("./files/" + name, Buffer.from(item.text, "utf-8"));
   }
   const zipFileName = fileId + ".zip";
   const filePath = './files/' + zipFileName;
