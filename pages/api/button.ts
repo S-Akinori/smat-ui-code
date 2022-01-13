@@ -63,6 +63,35 @@ const createCss = (buttons: ButtonType[]) => {
   return css;
 }
 
+const createPreview = ({html = '', css = ''}) => {
+  const previewHtml = `
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/toolbar/prism-toolbar.css" rel="stylesheet" />
+  </head>
+  <body style="font-size: 50px">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/normalize-whitespace/prism-normalize-whitespace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/normalize-whitespace/prism-normalize-whitespace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/toolbar/prism-toolbar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.js"></script>
+    <div>
+      <div>HTML</div>
+      <pre><code class="language-html">${html}</code></pre>
+    </div>
+    <div>
+      <div>CSS</div>
+      <pre><code class="language-css">${css}</code></pre>
+    </div>
+  </body>
+  </html>
+  `
+  return previewHtml;
+}
+
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -70,5 +99,6 @@ export default function handler(
   const { buttons } = req.body
   let html = createHtml(buttons);
   let css = createCss(buttons);
-  res.status(200).json({css, html})
+  const previewHtml = createPreview({html: html, css: css})
+  res.status(200).json({css, html, previewHtml})
 }
