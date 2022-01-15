@@ -80,7 +80,7 @@ const createPreview = ({html = '', css = ''}) => {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.js"></script>
     <div>
       <div>HTML</div>
-      <pre><code class="language-html"><!-- ${html} --></code></pre>
+      <pre><code class="language-html"><!--${html}--></code></pre>
     </div>
     <div>
       <div>CSS</div>
