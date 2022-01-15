@@ -93,7 +93,6 @@ const ButtonCodeArea = () => {
           <pre><code id="buttonCSSArea" className="language-css"></code></pre>
         </div>
       </div>
-      <iframe width="100%"></iframe>
     </div>
   )
 }
